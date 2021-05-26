@@ -13,15 +13,16 @@ const Login = () => {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        setValues({
+        console.log(value)
+        setValues({...values,
             [name]: value
         })
     }
 
     const handleSubmit = (event) => {
+        //event.preventDefault();
         alert(JSON.stringify(values))
         setValues('')
-        event.preventDefault();
     }
 
     return (
@@ -37,21 +38,23 @@ const Login = () => {
             <div style={Right} >
                 <div style={LoginContainer} >
                     <div style={LoginTitle}>User <b style={{ fontWeight: '500' }}>login</b></div>
+                    <div style={{ borderBottom: '2px solid #8166D1', marginBottom: '1rem', width: '20%' }} />
                     <form onSubmit={handleSubmit}>
                         <div style={InputContainer} >
                             <label style={Label} for="email" >Email</label>
-                            <input style={Input} type="text" placeholder="Enter Email" name="email" value={values.email} onChange={handleChange} />
+                            <input style={Input} type="text" placeholder="Enter Email" name="email" value={values.email} onChange={handleChange} required />
                         </div>
                         <div style={InputContainer} >
                             <label style={Label} for="psw" >Password</label>
-                            <input style={Input} type="password" placeholder="Enter Password" name="psw" value={values.password} onChange={handleChange} />
+                            <input style={Input} type="password" placeholder="Enter Password" name="psw" value={values.psw} onChange={handleChange} required />
                         </div>
-                        <div style={InputRadioContainer} >
-                            <input type='radio' id='rememberPsw' name='rememberPsw' />
-                            <label style={radioBtnLabel} for="rememberPsw">Remember Password</label>
-                        </div>
-                        <div style={{ float: 'right' }}>
-                            <a href='/' >Forgot Password?</a>
+                        <div style={InputRadioContainer}>
+                            <label style={radioBtnLabel} for="rememberPsw">
+                                <input style={radioBtn} type='checkbox' id='rememberPsw' name='rememberPsw' value={values.rememberPsw} onChange={handleChange} />
+                                Remember Password</label>
+                            <div style={forgotPsw}>
+                                Forgot Password?
+                            </div>
                         </div>
                         <div style={submitBtnContainer} >
                             <button style={submitBtn} ><div style={LoginBtnText} >Login</div></button>
@@ -85,31 +88,31 @@ const LoginText = {
 const TextContainer = {
     margin: 'auto',
     width: '70%',
-    paddingBottom: '3em'
+    paddingBottom: '3rem'
 }
 
 const LoginContainer = {
-    padding: '1em 2em',
+    padding: '1rem 2rem',
     display: 'flex',
     flexDirection: 'column',
 }
 
 const DrawingContainer = {
-    padding: '3em 1em',
+    padding: '2rem 0',
 }
 
 const Image = {
     display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto',
-    width: '90%',
+    width: '100%',
 }
 
 const Left = {
     flex: '5',
     backgroundColor: '#D8D7DE',
     borderRadius: '30px 0 0 30px',
-    padding: '2em 1em',
+    padding: '2rem 1rem',
 }
 
 const Right = {
@@ -128,12 +131,14 @@ const Input = {
 }
 
 const InputContainer = {
-    padding: '0 1em 1em 1em',
+    padding: '0 1rem 1rem 0',
 }
 
 const InputRadioContainer = {
-    padding: '0 1em .5em 1em',
-    float: 'left',
+    padding: '0 0 .5rem 0',
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
 }
 
 const LoginTitle = {
@@ -141,7 +146,7 @@ const LoginTitle = {
     fontWeight: '300',
     fontSize: '36px',
     fontStyle: 'normal',
-    padding: '1em 0 .5em .5em'
+    padding: '2rem 0 .5rem 0',
 }
 
 const Label = {
@@ -152,23 +157,28 @@ const Label = {
     color: '#666666',
 }
 
+const radioBtn = {
+    backgroundColor: '#D6D6D6',
+    border: 'solid #D6D6D6'
+}
+
 const radioBtnLabel = {
     fontFamily: 'Montserrat',
     fontWeight: '500',
-    fontSize: '15px',
+    fontSize: '14px',
     fontStyle: 'normal',
-    color: '#666666',
+    color: '#D6D6D6',
 }
 
 const submitBtnContainer = {
     margin: 'auto',
-    width: '100%',
-    padding: '100px .5em 0 .5em'
+    width: '60%',
+    padding: '50px .5em 0 .5em'
 }
 
 const submitBtn = {
     borderRadius: '10px',
-    minWidth: '244px',
+    width: '100%',
     padding: '.5em',
     background: 'linear-gradient(89.62deg, #48425C 0.32%, #6F6884 99.67%)',
     color: '#FFF',
@@ -181,6 +191,15 @@ const LoginBtnText = {
     fontSize: '15px',
     fontStyle: 'normal',
     color: '#FFF',
+}
+
+const forgotPsw = {
+    cursor: 'pointer',
+    fontFamily: 'Montserrat',
+    fontWeight: '500',
+    fontSize: '14px',
+    fontStyle: 'normal',
+    color: '#D6D6D6',
 }
 
 export default Login;
