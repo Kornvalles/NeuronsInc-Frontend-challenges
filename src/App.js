@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from './components/Login';
+import Header from './components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={Container}>
+      <Header />
+      <div style={LoginContainer} >
+        <Login />
+      </div>
     </div>
   );
+}
+
+const Container = {
+  backgroundColor: '#EEEDF2',
+  paddingTop: '1em',
+  height: '100%',
+  width: '100%',
+}
+
+const LoginContainer = {
+  marginTop: '100px',
+  height: '100%',
 }
 
 export default App;
